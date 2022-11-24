@@ -2,6 +2,7 @@ package es.mcg;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 
 import org.apache.commons.io.FileUtils;
@@ -32,7 +33,7 @@ public class PartidosStatsBomb {
     }
 
     public static void main(String[] args) {
-        File file = null, file2 = null;
+        File file = null;
         FileWriter fileWriter = null;
         PrintWriter printWriter = null;
         String fileContent;
@@ -41,8 +42,10 @@ public class PartidosStatsBomb {
         {
             file = new File("43.json");
             fileContent = FileUtils.readFileToString(file, PartidosStatsBomb.ENCODE);
+            fileWriter = new FileWriter(new File("partidos.txt"));
+            printWriter = new PrintWriter(fileWriter);
         }
-        catch(Exception e)
+        catch(IOException IOException)
         {
 
         }
