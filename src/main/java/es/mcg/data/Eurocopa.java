@@ -1,13 +1,12 @@
 package es.mcg.data;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.util.Date;
 
 public class Eurocopa {
     private Integer match_id;
-    private LocalDate match_date;
-    private LocalTime kick_off;
+    private Date match_date;
+    private Date kick_off;
     private Competition competition;
     private Season season;
     private HomeTeam home_team;
@@ -36,12 +35,12 @@ public class Eurocopa {
         return match_id;
     }
 
-    public LocalDate getMatch_date() 
+    public Date getMatch_date() 
     {
         return match_date;
     }
 
-    public LocalTime getKick_off() 
+    public Date getKick_off() 
     {
         return kick_off;
     }
@@ -126,12 +125,12 @@ public class Eurocopa {
         this.match_id = match_id;
     }
 
-    public void setMatch_date(LocalDate match_date) 
+    public void setMatch_date(Date match_date) 
     {
         this.match_date = match_date;
     }
 
-    public void setKick_off(LocalTime kick_off) 
+    public void setKick_off(Date kick_off) 
     {
         this.kick_off = kick_off;
     }
