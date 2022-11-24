@@ -6,11 +6,14 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class PartidosStatsBomb {
     private static final String ENCODE = "UTF-8";
+    private static final Logger LOGGER = LogManager.getLogger();
 
     public static class Json
     {
