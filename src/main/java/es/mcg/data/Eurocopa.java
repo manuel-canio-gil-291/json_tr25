@@ -209,4 +209,15 @@ public class Eurocopa {
     {
         this.referee = referee;
     }
+
+    @Override
+    public String toString() {
+        return "Eurocopa [match_id=" + match_id + ", match_date=" + match_date + ", kick_off=" + kick_off
+                + ", competition=" + competition + ", season=" + season + ", home_team=" + home_team + ", away_team="
+                + away_team + ", home_score=" + home_score + ", away_score=" + away_score + ", match_status="
+                + match_status + ", match_status_360=" + match_status_360 + ", last_updated=" + last_updated
+                + ", last_updated360=" + last_updated360 + ", metadata=" + metadata + ", match_week=" + match_week
+                + ", competition_stage=" + competition_stage + ", stadium=" + stadium + ", referee=" + referee + "]";
+    }
+    
 }
