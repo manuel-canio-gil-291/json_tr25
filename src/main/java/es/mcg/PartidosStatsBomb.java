@@ -7,7 +7,9 @@ import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
@@ -61,14 +63,14 @@ public class PartidosStatsBomb {
         FileWriter fileWriter = null;
         PrintWriter printWriter = null;
         String fileContent;
-        Eurocopa eurocopa = null;
+        List<Eurocopa> datosEurocopa = null;
         try
         {
             file = new File("43.json");
             fileContent = FileUtils.readFileToString(file, PartidosStatsBomb.ENCODE);
             fileWriter = new FileWriter(new File("partidos.txt"));
             printWriter = new PrintWriter(fileWriter);
-
+            datosEurocopa = new ArrayList<Eurocopa>();
             JsonNode eurocopaJsonNode = Json.mapper().readTree(fileContent);
 
             if(eurocopaJsonNode.isArray())
@@ -78,7 +80,7 @@ public class PartidosStatsBomb {
                 final Iterator<JsonNode> eurocopaIterator = eurocopaArrayJsonNode.elements();
                 while(eurocopaIterator.hasNext())
                 {
-                    eurocopa = new Eurocopa();
+                    Eurocopa eurocopa = new Eurocopa();
                     final JsonNode eurocopaDataJsonNode = eurocopaIterator.next();
                     if(eurocopaDataJsonNode.has("match_id"))
                     {
@@ -577,9 +579,18 @@ public class PartidosStatsBomb {
                         }
                         eurocopa.setReferee(referee);
                     }
+                    datosEurocopa.add(eurocopa);
                 }
             }
-            System.out.println(eurocopa);
+            for(int i = 0; i < datosEurocopa.size(); i++)
+            {
+                if(datosEurocopa.get(i).getCompetition_stage().getName().equals("Final"))
+                {
+                    printWriter.println("Nombre de los equipos que jugaron la final de la Eurocopa 2020:");
+                    printWriter.println(datosEurocopa.get(i).getHome_team().getHome_team_name());
+                    printWriter.println(datosEurocopa.get(i).getAway_team().getAway_team_name());
+                }
+            }
         }
         catch(IOException ioException)
         {
