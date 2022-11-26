@@ -582,11 +582,35 @@ public class PartidosStatsBomb {
                     datosEurocopa.add(eurocopa);
                 }
             }
+            printWriter.println("Nombre de los equipos que jugaron la final de la Eurocopa 2020:");
             for(int i = 0; i < datosEurocopa.size(); i++)
             {
                 if(datosEurocopa.get(i).getCompetition_stage().getName().equals("Final"))
                 {
-                    printWriter.println("Nombre de los equipos que jugaron la final de la Eurocopa 2020:");
+                    printWriter.println(datosEurocopa.get(i).getHome_team().getHome_team_name());
+                    printWriter.println(datosEurocopa.get(i).getAway_team().getAway_team_name());
+                }
+            }
+            printWriter.println("Entrenadores cuya nacionalidad no coincide con el pais que representa:");
+            for(int i = 0; i < datosEurocopa.size(); i++)
+            {
+                if(datosEurocopa.get(i).getHome_team().getHome_team_name() 
+                != datosEurocopa.get(i).getHome_team().getManagers().getCountry().getName())
+                {
+                    printWriter.println(datosEurocopa.get(i).getHome_team().getManagers().getName());
+                }
+                if(datosEurocopa.get(i).getAway_team().getAway_team_name()
+                != datosEurocopa.get(i).getAway_team().getManagers().getName())
+                {
+                    printWriter.println(datosEurocopa.get(i).getAway_team().getManagers().getName());
+                }
+            }
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            printWriter.println("Nombres de los equipos que jugaron el partido despues del 1 de julio de 2021:");
+            for(int i = 0; i < datosEurocopa.size(); i++) 
+            {
+                if(datosEurocopa.get(i).getMatch_date().after(dateFormat.parse("2021-07-01")))
+                {
                     printWriter.println(datosEurocopa.get(i).getHome_team().getHome_team_name());
                     printWriter.println(datosEurocopa.get(i).getAway_team().getAway_team_name());
                 }
