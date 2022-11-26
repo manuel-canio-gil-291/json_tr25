@@ -600,7 +600,7 @@ public class PartidosStatsBomb {
                     printWriter.println(datosEurocopa.get(i).getHome_team().getManagers().getName());
                 }
                 if(datosEurocopa.get(i).getAway_team().getAway_team_name()
-                != datosEurocopa.get(i).getAway_team().getManagers().getName())
+                != datosEurocopa.get(i).getAway_team().getManagers().getCountry().getName())
                 {
                     printWriter.println(datosEurocopa.get(i).getAway_team().getManagers().getName());
                 }
@@ -618,11 +618,30 @@ public class PartidosStatsBomb {
         }
         catch(IOException ioException)
         {
+            LOGGER.error("Error durante la lectura del archivo JSON");
             ioException.printStackTrace();
         }
         catch(ParseException parseException)
         {
+            LOGGER.error("No se pudo convertir la cadena de texto en fecha, posible formato incorrecto");
             parseException.printStackTrace();
+        }
+        finally
+        {
+            if(printWriter != null)
+            {
+                printWriter.close();
+            }
+            if(fileWriter != null)
+            {
+                try 
+                {
+                    fileWriter.close();    
+                } catch (IOException ioException) 
+                {
+                    ioException.printStackTrace();
+                }
+            }
         }
     }
 }
